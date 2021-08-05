@@ -5,8 +5,8 @@ getgenv().setsimulationradius = newcclosure(function()
 end)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-	Title = "Refaintimation V2";
-	Text = "Refaintimation Has Loaded! | Made by 2faint#6969 | Netless Reanimation Script";
+	Title = "Refaintimation V2 Has Loaded!";
+	Text = "Made by 2faint#6969 | Netless Reanimation Script";
 	Duration = 3;
 })
 
