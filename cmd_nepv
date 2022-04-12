@@ -2,26 +2,19 @@ game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):Destroy()
 
 wait(1)
 
---- Did actually rework heavily away from original neptunian, and the non-rework neptunian. --NoobyGames12
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GelatekWasTaken/GelatekV2/main/LoadLibrary.lua',true))()
+
+--- Did actually rework heavily away from original neptunian, and the non-rework neptunian. -- NoobyGames12
 --- Was supposed to be for the770zone, or VengefulProgram.
 
-warn'Neptune/Neptunian V'
-warn[[Absolutely.
+print("> Running Neptune/Neptunian V by NoobyGames12")
+print[[// Set your theme by 
 
-Created by NoobyGames12
-----------------------------]]
+id/ [num]
+vol/ [num]
+pitch/ [num]  ]]
 
-print[[Set your theme by: 
-id/
-vol/
-pitch/
-You can skip through the position of theme by:
-skipto/]]
-
-warn("Have fun using this!")
 ---- DO NOT CHANGE ANYTHING BELOW IF YOU'RE NOT AN EDITOR 
-
-
 --Converted with ttyyuu12345's model to script plugin v4
 function sandbox(var,func)
 	local env = getfenv(func)
@@ -5141,9 +5134,9 @@ for i,v in pairs(Model0:GetChildren()) do
 	end
 end
 
-
+--// character variable here
 plr = game:GetService("Players").LocalPlayer
-char = plr.Character
+char = plr.Character.Dummy.Dummy
 hum = char.Humanoid
 local cam = game.Workspace.CurrentCamera
 t = char.Torso
@@ -5180,6 +5173,7 @@ kan.SoundId = "rbxassetid://1873219898" --525289865,1873219898,381991270
 kan.Name = "nepnepnep"
 kan.Looped = true
 kan:Play()
+kan.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 
 --------------------------- GUI STUFF
 local basgui = it("GuiMain")
@@ -5431,7 +5425,7 @@ CFuncs = {
 					Volume = vol,
 					Pitch = pit or 1,
 					SoundId = id,
-					Parent = par or workspace,
+					Parent = game:GetService("Players").LocalPlayer.PlayerGui,
 				}
 				wait() 
 				S:play() 
@@ -5447,7 +5441,7 @@ CFuncs = {
 					Volume = vol,
 					Pitch = pit or 1,
 					SoundId = id,
-					Parent = par or workspace,
+					Parent = game:GetService("Players").LocalPlayer.PlayerGui,
 				}
 				wait() 
 				S:play() 
@@ -5640,9 +5634,9 @@ function CreateWeld(Parent, Part0, Part1, C0, C1)
   })
   return Weld
 end
-
+--// other variable for character ig idk
 Player=game:GetService("Players").LocalPlayer
-Character=Player.Character 
+Character=Player.Character.Dummy.Dummy
 PlayerGui=Player.PlayerGui 
 Backpack=Player.Backpack 
 Torso=Character.Torso 
@@ -5734,7 +5728,7 @@ Stats.Parent=Character
 local Atk=Instance.new("NumberValue")
 Atk.Name="Damage"
 Atk.Parent=Stats
-Atk.Value=1
+Atk.Value=0
 local Def=Instance.new("NumberValue")
 Def.Name="Defense"
 Def.Parent=Stats
@@ -6238,7 +6232,7 @@ function MagniDamage(Part, magni, mindam, maxdam, knock, Type,Sound)
         local targ = head.Position - Part.Position
         local mag = targ.magnitude
         if magni >= mag and c.Name ~= Player.Name then
-          Damagefunc(head, head, mindam, maxdam, knock, Type, RootPart, 0.1, "rbxassetid://" ..Sound, 1)
+          
         end
       end
       local head = c:findFirstChild("UpperTorso")
@@ -6246,7 +6240,7 @@ function MagniDamage(Part, magni, mindam, maxdam, knock, Type,Sound)
         local targ = head.Position - Part.Position
         local mag = targ.magnitude
         if magni >= mag and c.Name ~= Player.Name then
-          Damagefunc(head, head, mindam, maxdam, knock, Type, RootPart, 0.1, "rbxassetid://" ..Sound, 1)
+        
         end
       end
     end
@@ -6691,12 +6685,53 @@ function FindNearestTorso(Position, Distance, SinglePlayer)
 	return List
 end
 
+--// Credits to Mizt for this AMAZING alignment script :> //--
+local alignchar = game:GetService("Players").LocalPlayer.Character
+local hhat = alignchar.MeshPartAccessory
+
+local Count = 1
+function AlignCharacter(Part0,Part1,Position,Angle)
+    local AlignPos = Instance.new('AlignPosition', Part1); AlignPos.Name = "AliP_"..Count
+    AlignPos.ApplyAtCenterOfMass = true;
+    AlignPos.MaxForce = 5772000--67752;
+    AlignPos.MaxVelocity = math.huge/9e110;
+    AlignPos.ReactionForceEnabled = false;
+    AlignPos.Responsiveness = 200;
+    AlignPos.RigidityEnabled = false;
+    local AlignOri = Instance.new('AlignOrientation', Part1); AlignOri.Name = "AliO_"..Count
+    AlignOri.MaxAngularVelocity = math.huge/9e110;
+    AlignOri.MaxTorque = 5772000
+    AlignOri.PrimaryAxisOnly = false;
+    AlignOri.ReactionTorqueEnabled = false;
+    AlignOri.Responsiveness = 200;
+    AlignOri.RigidityEnabled = false;
+    local AttachmentA=Instance.new('Attachment',Part1); AttachmentA.Name = "AthP_"..Count
+    local AttachmentB=Instance.new('Attachment',Part0); AttachmentB.Name = "AthP_"..Count
+    local AttachmentC=Instance.new('Attachment',Part1); AttachmentC.Name = "AthO_"..Count
+    local AttachmentD=Instance.new('Attachment',Part0); AttachmentD.Name = "AthO_"..Count
+    AttachmentC.Orientation = Angle
+    AttachmentA.Position = Position
+    AlignPos.Attachment1 = AttachmentA;
+    AlignPos.Attachment0 = AttachmentB;
+    AlignOri.Attachment1 = AttachmentC;
+    AlignOri.Attachment0 = AttachmentD;
+    Count = Count + 1
+end
+
+hhat.Handle.AccessoryWeld:Destroy()
+AlignCharacter(hhat.Handle,char.Model.Part,Vector3.new(-3,0,0),Vector3.new(0,0,-45))
+
+for _,v in pairs(plr.Character.Model:GetChildren()) do
+	if v:IsA("BasePart") then
+		v.Transparency = 1
+	end
+end
 
 local dashing = false
 local floatmode = false
 local OWS = hum.WalkSpeed
 local equipped = false
-Humanoid.Name = "NEPTUNIA"
+Humanoid.Name = "Humanoid"
 Humanoid.MaxHealth = math.huge
 Humanoid.Health = math.huge
 Instance.new("ForceField",char).Visible = false
@@ -7487,7 +7522,6 @@ kan.PlaybackSpeed = ORPIT
 kan.Pitch = ORPIT
 kan.SoundId = "rbxassetid://" ..ORGID
 kan.Looped = true
-kan.Parent = plr.PlayerGui
 kan:Resume()
 techc.Rotation = techc.Rotation + 0.1
 imgl2.Rotation = imgl2.Rotation - kan.PlaybackLoudness/50
