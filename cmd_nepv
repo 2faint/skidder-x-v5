@@ -1,3 +1,7 @@
+game.Players.LocalPlayer.Character.Humanoid:WaitForChild("Animator"):Destroy()
+
+wait(1)
+
 --- Did actually rework heavily away from original neptunian, and the non-rework neptunian. --NoobyGames12
 --- Was supposed to be for the770zone, or VengefulProgram.
 
