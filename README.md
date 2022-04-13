@@ -1,8 +1,9 @@
 Made by xrx4#2147
 
-Script Credits:
+Credits:
 
-Mizt Reanimation: Mizt#5509
+Mizt Reanimation: Mizt#5509                   
+Normal Animation: idk his name but its from selexity
 
 All the scripts:
 
